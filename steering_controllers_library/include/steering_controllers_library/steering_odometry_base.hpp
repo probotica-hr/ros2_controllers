@@ -29,10 +29,6 @@
 
 namespace steering_odometry
 {
-const unsigned int BICYCLE_CONFIG = 0;
-const unsigned int TRICYCLE_CONFIG = 1;
-const unsigned int ACKERMANN_CONFIG = 2;
-
 inline bool is_close_to_zero(double val) { return std::fabs(val) < 1e-6; }
 
 /**
@@ -112,7 +108,7 @@ public:
    */
   void reset_odometry();
 
-private:
+protected:
   /**
    * \brief Uses precomputed linear and angular velocities to compute odometry
    * \param v_bx  Linear  velocity   [m/s]
@@ -174,4 +170,4 @@ private:
 };
 }  // namespace steering_odometry
 
-#endif  // STEERING_CONTROLLERS_LIBRARY__STEERING_ODOMETRY_HPP_
+#endif  // STEERING_CONTROLLERS_LIBRARY__STEERING_ODOMETRY_BASE_HPP_
