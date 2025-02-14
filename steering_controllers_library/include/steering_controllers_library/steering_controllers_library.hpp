@@ -27,9 +27,6 @@
 #include "realtime_tools/realtime_buffer.h"
 #include "realtime_tools/realtime_publisher.h"
 #include "std_srvs/srv/set_bool.hpp"
-#include "steering_controllers_library/steering_controller_base.hpp"
-#include "steering_controllers_library/steering_odometry.hpp"
-#include "steering_controllers_library_parameters.hpp"
 
 // TODO(anyone): Replace with controller specific messages
 #include "ackermann_msgs/msg/ackermann_drive_stamped.hpp"
@@ -38,6 +35,7 @@
 #include "nav_msgs/msg/odometry.hpp"
 #include "tf2_msgs/msg/tf_message.hpp"
 
+#include "steering_controllers_library/steering_controller_base.hpp"
 #include "steering_controllers_library/steering_controllers_library_parameters.hpp"
 #include "steering_controllers_library/steering_odometry.hpp"
 
