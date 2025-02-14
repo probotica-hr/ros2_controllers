@@ -29,7 +29,6 @@
 #include "std_srvs/srv/set_bool.hpp"
 #include "steering_controllers_library/steering_controller_base.hpp"
 #include "steering_controllers_library/steering_odometry.hpp"
-#include "steering_controllers_library/visibility_control.h"
 #include "steering_controllers_library_parameters.hpp"
 
 // TODO(anyone): Replace with controller specific messages
@@ -49,7 +48,6 @@ class SteeringControllersLibrary : public SteeringControllerBase
 public:
   SteeringControllersLibrary();
 
-  STEERING_CONTROLLERS__VISIBILITY_PUBLIC
   std::tuple<std::vector<double>, std::vector<double>>
   get_commands(const double v_bx, const double omega_bz, const bool open_loop = true) override;
 

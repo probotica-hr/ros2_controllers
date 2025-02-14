@@ -31,7 +31,6 @@
 #include "realtime_tools/realtime_publisher.h"
 #include "std_srvs/srv/set_bool.hpp"
 #include "steering_controllers_library/steering_odometry_base.hpp"
-#include "steering_controllers_library/visibility_control.h"
 #include "steering_controllers_library_parameters.hpp"
 
 // TODO(anyone): Replace with controller specific messages
@@ -47,38 +46,38 @@ namespace steering_controllers_library
 class SteeringControllerBase : public controller_interface::ChainableControllerInterface
 {
 public:
-  STEERING_CONTROLLERS__VISIBILITY_PUBLIC SteeringControllerBase(steering_odometry::SteeringOdometryBase &odometry);
+  SteeringControllerBase(steering_odometry::SteeringOdometryBase &odometry);
 
-  virtual STEERING_CONTROLLERS__VISIBILITY_PUBLIC void
+  virtual void
   initialize_implementation_parameter_listener() = 0;
 
-  STEERING_CONTROLLERS__VISIBILITY_PUBLIC controller_interface::CallbackReturn on_init() override;
+  controller_interface::CallbackReturn on_init() override;
 
-  STEERING_CONTROLLERS__VISIBILITY_PUBLIC controller_interface::InterfaceConfiguration
+  controller_interface::InterfaceConfiguration
   command_interface_configuration() const override;
 
-  STEERING_CONTROLLERS__VISIBILITY_PUBLIC controller_interface::InterfaceConfiguration
+  controller_interface::InterfaceConfiguration
   state_interface_configuration() const override;
 
-  virtual STEERING_CONTROLLERS__VISIBILITY_PUBLIC controller_interface::CallbackReturn
+  virtual controller_interface::CallbackReturn
   configure_odometry() = 0;
 
-  virtual STEERING_CONTROLLERS__VISIBILITY_PUBLIC bool update_odometry(
+  virtual bool update_odometry(
     const rclcpp::Duration & period) = 0;
 
-  STEERING_CONTROLLERS__VISIBILITY_PUBLIC controller_interface::CallbackReturn on_configure(
+  controller_interface::CallbackReturn on_configure(
     const rclcpp_lifecycle::State & previous_state) override;
 
-  STEERING_CONTROLLERS__VISIBILITY_PUBLIC controller_interface::CallbackReturn on_activate(
+  controller_interface::CallbackReturn on_activate(
     const rclcpp_lifecycle::State & previous_state) override;
 
-  STEERING_CONTROLLERS__VISIBILITY_PUBLIC controller_interface::CallbackReturn on_deactivate(
+  controller_interface::CallbackReturn on_deactivate(
     const rclcpp_lifecycle::State & previous_state) override;
 
-  STEERING_CONTROLLERS__VISIBILITY_PUBLIC controller_interface::return_type
+  controller_interface::return_type
   update_reference_from_subscribers() override;
 
-  STEERING_CONTROLLERS__VISIBILITY_PUBLIC controller_interface::return_type
+  controller_interface::return_type
   update_and_write_commands(const rclcpp::Time & time, const rclcpp::Duration & period) override;
 
   /**
@@ -88,8 +87,7 @@ public:
    * \param open_loop If false, the IK will be calculated using measured steering angle
    * \return Tuple of velocity commands and steering commands
    */
-  virtual STEERING_CONTROLLERS__VISIBILITY_PUBLIC
-  std::tuple<std::vector<double>, std::vector<double>>
+  virtual std::tuple<std::vector<double>, std::vector<double>>
   get_commands(const double v_bx, const double omega_bz, const bool open_loop) = 0;
 
   using ControllerAckermannReferenceMsg = ackermann_msgs::msg::AckermannDriveStamped;
@@ -151,7 +149,7 @@ protected:
 
 private:
   // callback for topic interface
-  STEERING_CONTROLLERS__VISIBILITY_LOCAL void reference_callback(
+  void reference_callback(
     const std::shared_ptr<ControllerTwistReferenceMsg> msg);
   void reference_callback_unstamped(const std::shared_ptr<geometry_msgs::msg::Twist> msg);
 };
